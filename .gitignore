@@ -1,0 +1,6 @@
+.terraform/
+*.tfstate*
+.terraform.lock.hcl
+.onecloud/
+tfplan
+onecloud.auto.tfvars.json
