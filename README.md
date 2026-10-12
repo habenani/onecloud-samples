@@ -8,6 +8,7 @@ in Employee Center when the folder is scanned by a OneCloud template source.
 | `random-pet` | A random name and a local marker file. Uses only the `random` and `local` providers, so it runs anywhere. Good for a first end to end test. | none |
 | `aws-vpc` | A VPC with public and private subnets using the community VPC module. | AWS |
 | `azure-resource-group` | A resource group and a storage account. | Azure |
+| `azure-vm` | An Ubuntu 22.04 LTS virtual machine with its own virtual network, subnet, network security group, optional public IP and network interface, in a new or existing resource group. The end to end Azure walkthrough in the OneCloud repository (docs/guides/azure-vm-end-to-end.md) uses it. | Azure |
 
 Conventions OneCloud reads:
 
