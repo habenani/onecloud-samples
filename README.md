@@ -9,6 +9,7 @@ in Employee Center when the folder is scanned by a OneCloud template source.
 | `aws-vpc` | A VPC with public and private subnets using the community VPC module. | AWS |
 | `azure-resource-group` | A resource group and a storage account. | Azure |
 | `azure-vm` | An Ubuntu 22.04 LTS virtual machine with its own virtual network, subnet, network security group, optional public IP and network interface, in a new or existing resource group. The end to end Azure walkthrough in the OneCloud repository (docs/guides/azure-vm-end-to-end.md) uses it. | Azure |
+| `azure-three-tier` | A web server with a public IP and an app server without one, each in its own subnet and network security group, managed data disks on the app server and a private storage account, in a resource group of their own. Used by the OneCloud Azure day-2 test. | Azure |
 
 Conventions OneCloud reads:
 
