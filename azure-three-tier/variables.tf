@@ -82,22 +82,22 @@ variable "ingress_source_cidr" {
 variable "web_vm_size" {
   description = "Size of the web server."
   type        = string
-  default     = "Standard_B1s"
+  default     = "Standard_D2as_v4"
 
   validation {
-    condition     = contains(["Standard_B1s", "Standard_B1ms", "Standard_B2s"], var.web_vm_size)
-    error_message = "web_vm_size must be Standard_B1s, Standard_B1ms or Standard_B2s."
+    condition     = contains(["Standard_D2as_v4", "Standard_D2s_v3"], var.web_vm_size)
+    error_message = "web_vm_size must be Standard_D2as_v4 or Standard_D2s_v3."
   }
 }
 
 variable "app_vm_size" {
   description = "Size of the app server."
   type        = string
-  default     = "Standard_B1s"
+  default     = "Standard_D2as_v4"
 
   validation {
-    condition     = contains(["Standard_B1s", "Standard_B1ms", "Standard_B2s"], var.app_vm_size)
-    error_message = "app_vm_size must be Standard_B1s, Standard_B1ms or Standard_B2s."
+    condition     = contains(["Standard_D2as_v4", "Standard_D2s_v3"], var.app_vm_size)
+    error_message = "app_vm_size must be Standard_D2as_v4 or Standard_D2s_v3."
   }
 }
 

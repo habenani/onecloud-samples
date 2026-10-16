@@ -10,7 +10,7 @@ Creates a web server and an app server in Azure, each in its own subnet with its
 | `resource_group_name` | text, mandatory | Created by the template, deleted on Remove |
 | `location` | text | Map it to the account region (Variable mappings, value source Region) so it is not asked |
 | `ssh_public_key` | text, mandatory | One OpenSSH public key line |
-| `web_vm_size`, `app_vm_size` | select box | Standard_B1s (default), Standard_B1ms or Standard_B2s |
+| `web_vm_size`, `app_vm_size` | select box | Standard_D2as_v4 (default) or Standard_D2s_v3, 2 vCPUs each |
 | `web_os_disk_size_gb`, `app_os_disk_size_gb` | number | Default 30, grow only |
 | `app_data_disk_sizes_gb` | list | Default one 8 GB disk |
 | `ingress_ports` | list | TCP ports of the web tier, default 80 and 443 |
@@ -40,7 +40,11 @@ A database tier (Azure Database for PostgreSQL flexible server, Burstable B1ms) 
 
 ## Costs
 
-Two Standard_B1s servers, two 30 GB and one 8 GB Standard HDD disks, one Standard public IP and an LRS storage account. Stop deallocates a server, which stops the compute charge; disks and the public IP are still billed.
+Two Standard_D2as_v4 servers (2 vCPUs each, so the pair fits a 10 core trial quota with room for a resize), two 30 GB and one 8 GB Standard HDD disks, one Standard public IP and an LRS storage account. Stop deallocates a server, which stops the compute charge; disks and the public IP are still billed.
+
+## Sizes
+
+The B v1 sizes (Standard_B1s, B1ms, B2s) are no longer offered in UK South to new subscriptions, and trial subscriptions start with no quota for the B v2 families. Check what your subscription may use before you change the list: `az vm list-skus --location uksouth --resource-type virtualMachines --output table` (look for an empty Restrictions column) and `az vm list-usage --location uksouth --output table` (the family needs a limit above zero).
 
 ## Provider version
 
