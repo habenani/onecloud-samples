@@ -13,6 +13,8 @@ in Employee Center when the folder is scanned by a OneCloud template source.
 | `azure-aks-basic` | A small AKS cluster with one system node pool (1 to 3 nodes), free tier control plane, Kubernetes version picked from a list. Used by the OneCloud container test (scale, upgrade, stop and start). | Azure |
 | `azure-container-instance` | One container from a public image in Azure Container Instances with a public IP address and DNS name. Used by the OneCloud container test (restart, stop and start, change image or CPU). | Azure |
 | `aws-three-tier` | A VPC of its own with a public web server and a private app server (t3.micro), security groups per tier, EBS data volumes on the app server and a private S3 bucket. No NAT gateway. | AWS |
+| `azure-discovery-sampler` | One of each Azure type OneCloud records in the CMDB (VM, disk, NIC, public IP, NSG, VNet, subnet, AKS, container group, Azure SQL, load balancer, one unmapped type). Order it to check how your instance records and discovers each type, then remove it. | Azure |
+| `aws-discovery-sampler` | One of each AWS type OneCloud records in the CMDB (EC2, EBS, VPC, subnets, security group, internal ALB, RDS PostgreSQL, unmapped types). Order it to check how your instance records and discovers each type, then remove it. | AWS |
 | `aws-eks-basic` | An EKS cluster with one managed node group and its two IAM roles (path /onecloud/) in the default VPC. Planned by OneCloud, not applied: needs a key with EKS and IAM rights. | AWS |
 | `aws-ecs-fargate` | An ECS cluster, task definition, security group and Fargate service from a public image in the default VPC. Planned by OneCloud, not applied. | AWS |
 
