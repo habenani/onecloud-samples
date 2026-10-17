@@ -12,6 +12,8 @@ in Employee Center when the folder is scanned by a OneCloud template source.
 | `azure-three-tier` | A web server with a public IP and an app server without one, each in its own subnet and network security group, managed data disks on the app server and a private storage account, in a resource group of their own. Used by the OneCloud Azure day-2 test. | Azure |
 | `azure-aks-basic` | A small AKS cluster with one system node pool (1 to 3 nodes), free tier control plane, Kubernetes version picked from a list. Used by the OneCloud container test (scale, upgrade, stop and start). | Azure |
 | `azure-container-instance` | One container from a public image in Azure Container Instances with a public IP address and DNS name. Used by the OneCloud container test (restart, stop and start, change image or CPU). | Azure |
+| `aws-eks-basic` | An EKS cluster with one managed node group and its two IAM roles in the default VPC. Planned by OneCloud, not applied: needs a key with EKS and IAM rights. | AWS |
+| `aws-ecs-fargate` | An ECS cluster, task definition, security group and Fargate service from a public image in the default VPC. Planned by OneCloud, not applied. | AWS |
 
 Conventions OneCloud reads:
 

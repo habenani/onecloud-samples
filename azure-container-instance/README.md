@@ -10,8 +10,8 @@ Runs one container from a public image in Azure Container Instances, with a publ
 | `resource_group_name` | text, mandatory | Created by the template, deleted on Remove |
 | `location` | text | Map it to the account region (Variable mappings, value source Region) so it is not asked |
 | `image` | text | Default `mcr.microsoft.com/azuredocs/aci-helloworld:latest` |
-| `cpu_cores` | select box | 0.5, 1 (default) or 2 |
-| `memory_gb` | select box | 0.5, 1, 1.5 (default), 2 or 4 |
+| `cpu_cores` | number | 0.5, 1 (default) or 2; the plan refuses other values |
+| `memory_gb` | number | 0.5, 1, 1.5 (default), 2 or 4; the plan refuses other values |
 | `port` | number | Default 80 |
 | `cost_centre` | text | Default `CC-1001` |
 | `test_tag` | text | Optional. Puts an `OneCloudTest` tag on every resource for test clean up |
