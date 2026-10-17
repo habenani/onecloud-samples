@@ -11,7 +11,7 @@ Cost: the AKS node, the virtual machine, the load balancer and the database are 
 | Variable | Notes |
 |---|---|
 | `name` | Base name, 2 to 20 lowercase characters |
-| `resource_group_name` | New resource group; Remove deletes it |
+| `new_resource_group_name` | Name of the new resource group the sampler creates; Remove deletes it |
 | `ssh_public_key` | One OpenSSH public key line |
 | `ssh_source_cidr` | Who may reach the VM on port 22 (default a documentation range, so nobody) |
 | `vm_size`, `aks_node_size` | Smallest sizes your subscription offers; check `az vm list-skus --location <region>` |

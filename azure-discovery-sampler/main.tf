@@ -34,7 +34,7 @@ resource "random_password" "sql" {
 
 # ------------------------------------------------------------------ network
 resource "azurerm_resource_group" "this" {
-  name     = var.resource_group_name
+  name     = var.new_resource_group_name
   location = var.location
   tags     = local.tags
 }

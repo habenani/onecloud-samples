@@ -14,13 +14,13 @@ variable "location" {
   default     = "uksouth"
 }
 
-variable "resource_group_name" {
+variable "new_resource_group_name" {
   description = "New resource group that holds the sampler. Removing the deployment deletes it."
   type        = string
 
   validation {
-    condition     = can(regex("^[A-Za-z0-9._()-]{1,90}$", var.resource_group_name))
-    error_message = "resource_group_name must be 1 to 90 characters of letters, digits, periods, underscores, hyphens or parentheses."
+    condition     = can(regex("^[A-Za-z0-9._()-]{1,90}$", var.new_resource_group_name))
+    error_message = "new_resource_group_name must be 1 to 90 characters of letters, digits, periods, underscores, hyphens or parentheses."
   }
 }
 
