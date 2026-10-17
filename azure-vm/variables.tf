@@ -30,8 +30,25 @@ variable "create_resource_group" {
   default     = true
 }
 
+variable "create_network" {
+  description = "Create a virtual network and subnet for the virtual machine. Set to false to place it in an existing subnet (subnet_id)."
+  type        = bool
+  default     = true
+}
+
+variable "subnet_id" {
+  description = "Azure resource id of an existing subnet, used when create_network is false. The subnet must be in the same region."
+  type        = string
+  default     = ""
+
+  validation {
+    condition     = var.subnet_id == "" || can(regex("(?i)^/subscriptions/[^/]+/resourceGroups/[^/]+/providers/Microsoft.Network/virtualNetworks/[^/]+/subnets/[^/]+$", var.subnet_id))
+    error_message = "subnet_id must be empty or the resource id of a subnet (/subscriptions/.../virtualNetworks/<vnet>/subnets/<subnet>)."
+  }
+}
+
 variable "address_space" {
-  description = "Address space of the virtual network in CIDR notation."
+  description = "Address space of the new virtual network in CIDR notation. Used when create_network is true."
   type        = string
   default     = "10.60.0.0/16"
 
@@ -42,7 +59,7 @@ variable "address_space" {
 }
 
 variable "subnet_prefix" {
-  description = "Address prefix of the subnet, inside the virtual network address space."
+  description = "Address prefix of the new subnet, inside the virtual network address space. Used when create_network is true."
   type        = string
   default     = "10.60.1.0/24"
 

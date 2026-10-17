@@ -1,6 +1,8 @@
 # Azure Linux virtual machine sample for OneCloud.
-# One template, one unit of deployment: resource group (new or existing), virtual network, subnet, network security
-# group with an SSH rule, optional public IP, network interface and an Ubuntu 22.04 LTS virtual machine.
+# One template, one unit of deployment: resource group (new or existing), virtual network and subnet (new, or an
+# existing subnet), network security group with an SSH rule, optional public IP, network interface and an Ubuntu 22.04
+# LTS virtual machine. In an existing subnet the security group is attached to the network interface, never to the
+# shared subnet.
 
 locals {
   # Template tags first, OneCloud tags last so the deployment correlation tag always wins.
@@ -14,6 +16,30 @@ locals {
 
   resource_group_name = var.create_resource_group ? azurerm_resource_group.this[0].name : data.azurerm_resource_group.existing[0].name
   location            = var.create_resource_group ? azurerm_resource_group.this[0].location : data.azurerm_resource_group.existing[0].location
+  subnet_id           = var.create_network ? azurerm_subnet.this[0].id : var.subnet_id
+}
+
+check "subnet_given" {
+  assert {
+    condition     = var.create_network || var.subnet_id != ""
+    error_message = "subnet_id is needed when create_network is false."
+  }
+}
+
+# Deployments made before create_network existed keep their network objects
+moved {
+  from = azurerm_virtual_network.this
+  to   = azurerm_virtual_network.this[0]
+}
+
+moved {
+  from = azurerm_subnet.this
+  to   = azurerm_subnet.this[0]
+}
+
+moved {
+  from = azurerm_subnet_network_security_group_association.this
+  to   = azurerm_subnet_network_security_group_association.this[0]
 }
 
 resource "azurerm_resource_group" "this" {
@@ -31,6 +57,8 @@ data "azurerm_resource_group" "existing" {
 }
 
 resource "azurerm_virtual_network" "this" {
+  count = var.create_network ? 1 : 0
+
   name                = "${var.name}-vnet"
   resource_group_name = local.resource_group_name
   location            = local.location
@@ -39,9 +67,11 @@ resource "azurerm_virtual_network" "this" {
 }
 
 resource "azurerm_subnet" "this" {
+  count = var.create_network ? 1 : 0
+
   name                 = "${var.name}-subnet"
   resource_group_name  = local.resource_group_name
-  virtual_network_name = azurerm_virtual_network.this.name
+  virtual_network_name = azurerm_virtual_network.this[0].name
   address_prefixes     = [var.subnet_prefix]
 }
 
@@ -65,7 +95,16 @@ resource "azurerm_network_security_group" "this" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "this" {
-  subnet_id                 = azurerm_subnet.this.id
+  count = var.create_network ? 1 : 0
+
+  subnet_id                 = azurerm_subnet.this[0].id
+  network_security_group_id = azurerm_network_security_group.this.id
+}
+
+resource "azurerm_network_interface_security_group_association" "this" {
+  count = var.create_network ? 0 : 1
+
+  network_interface_id      = azurerm_network_interface.this.id
   network_security_group_id = azurerm_network_security_group.this.id
 }
 
@@ -88,7 +127,7 @@ resource "azurerm_network_interface" "this" {
 
   ip_configuration {
     name                          = "primary"
-    subnet_id                     = azurerm_subnet.this.id
+    subnet_id                     = local.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = var.create_public_ip ? azurerm_public_ip.this[0].id : null
   }
@@ -123,5 +162,5 @@ resource "azurerm_linux_virtual_machine" "this" {
     version   = "latest"
   }
 
-  depends_on = [azurerm_subnet_network_security_group_association.this]
+  depends_on = [azurerm_subnet_network_security_group_association.this, azurerm_network_interface_security_group_association.this]
 }
