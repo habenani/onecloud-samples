@@ -17,6 +17,7 @@ Creates a web server and an app server in Azure, each in its own subnet with its
 | `ingress_source_cidr` | text | Who may reach those ports, default anywhere |
 | `admin_username` | text | Default `azureuser` |
 | `address_space`, `web_subnet_prefix`, `app_subnet_prefix` | text | Defaults in `10.70.0.0/16` |
+| `cost_centre` | text | Default `CC-1001`, put on every resource as the `cost_centre` tag |
 | `test_tag` | text | Optional. Puts an `OneCloudTest` tag on every resource for test clean up |
 | `tags` | filled by OneCloud | Hide it in the variable mapping |
 

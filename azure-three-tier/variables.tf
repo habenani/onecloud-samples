@@ -166,6 +166,17 @@ variable "test_tag" {
   }
 }
 
+variable "cost_centre" {
+  description = "Cost centre the resources are charged to, put on every resource as the cost_centre tag."
+  type        = string
+  default     = "CC-1001"
+
+  validation {
+    condition     = can(regex("^[A-Za-z0-9-]{1,20}$", var.cost_centre))
+    error_message = "cost_centre must be 1 to 20 letters, digits or hyphens."
+  }
+}
+
 variable "tags" {
   description = "Tags applied to every resource. OneCloud passes the deployment tags here, including the onecloud_deployment correlation tag."
   type        = map(string)

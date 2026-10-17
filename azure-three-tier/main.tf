@@ -12,8 +12,9 @@ locals {
   # Template tags first, OneCloud tags last so the deployment correlation tag always wins.
   tags = merge(
     {
-      Name     = var.name
-      template = "azure-three-tier"
+      Name        = var.name
+      template    = "azure-three-tier"
+      cost_centre = var.cost_centre
     },
     var.test_tag == "" ? {} : { OneCloudTest = var.test_tag },
     var.tags,
