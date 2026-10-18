@@ -2,7 +2,7 @@
 
 Runs a container from a public image as an Amazon ECS service on Fargate in the default VPC: an ECS cluster, a task definition, a security group that opens the container port, and the service with public IP addresses. Pick the image, the task size and the number of tasks when you order. Remove deletes all of it. Needs an AWS cloud account in OneCloud whose key may manage ECS and EC2 security groups.
 
-Not proven live by OneCloud yet: the test account's key cannot delete security groups or create ECS resources, so only a Terraform plan was run (17 October 2026).
+Proven live on 18 October 2026 in eu-north-1: order (service ACTIVE, 1 Fargate task in the default VPC, about 2 minutes), Scale service to 2 (2 running) and Remove (cluster deleted, no active task definition or security group left).
 
 ## What the requester fills in
 

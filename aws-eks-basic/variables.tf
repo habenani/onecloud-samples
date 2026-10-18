@@ -31,13 +31,13 @@ variable "node_count" {
 }
 
 variable "node_instance_type" {
-  description = "EC2 instance type of the nodes."
+  description = "EC2 instance type of the nodes. An AWS account on the Free plan launches only free tier eligible types: pick t3.small, c7i-flex.large or m7i-flex.large there."
   type        = string
   default     = "t3.medium"
 
   validation {
-    condition     = contains(["t3.medium", "t3.large"], var.node_instance_type)
-    error_message = "node_instance_type must be t3.medium or t3.large."
+    condition     = contains(["t3.small", "t3.medium", "t3.large", "c7i-flex.large", "m7i-flex.large"], var.node_instance_type)
+    error_message = "node_instance_type must be t3.small, t3.medium, t3.large, c7i-flex.large or m7i-flex.large."
   }
 }
 
