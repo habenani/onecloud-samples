@@ -34,7 +34,7 @@ Variables named `<tier>_<setting>` belong to the server whose Terraform name is 
 
 ## Outputs
 
-`vpc_id`, `web_public_ip`, `web_private_ip`, `app_private_ip`, `web_instance_id`, `app_instance_id`, `data_bucket` and `open_ports`.
+`vpc_id`, `web_public_ip`, `web_private_ip`, `app_private_ip`, `web_instance_id`, `app_instance_id`, `data_bucket`, `open_ports` and `web_url`. Version 2 also tags every resource with `template_v = "2"`.
 
 ## Costs
 

@@ -37,3 +37,8 @@ output "open_ports" {
   description = "TCP ports open on the web tier."
   value       = var.ingress_ports
 }
+
+output "web_url" {
+  description = "Address of the web server over plain HTTP (port 80 must be open)."
+  value       = "http://${aws_instance.web.public_ip}"
+}

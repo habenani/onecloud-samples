@@ -14,6 +14,7 @@ locals {
     {
       Name        = var.name
       template    = "aws-three-tier"
+      template_v  = "2"
       cost_centre = var.cost_centre
     },
     var.test_tag == "" ? {} : { OneCloudTest = var.test_tag },
