@@ -25,3 +25,5 @@ Runs one container from a public image in Azure Container Instances, with a publ
 | Update | changes `image`, `cpu_cores` or `memory_gb`; Terraform replaces the container group, so it is unavailable for a minute or two and gets a new IP address |
 
 Checked against the azurerm provider 4.x documentation and the Azure Container Instances documentation on 17 October 2026.
+
+Tested through OneCloud on Azure (UK South) on 17 and 18 October 2026: order, Restart containers, Update of the CPU (1 to 2), Stop containers, Start containers and Remove all worked. Stop takes seconds, Start and Restart about a minute.

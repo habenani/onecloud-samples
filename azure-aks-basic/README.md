@@ -30,3 +30,5 @@ Creates a small Azure Kubernetes Service cluster in a resource group of its own:
 Every node is a 2 vCPU virtual machine. An upgrade adds one more node while it runs (`max_surge = 1`). A one node cluster therefore needs 4 vCPUs of the Dasv4 family in the region during an upgrade, and scaling to 3 nodes needs 6.
 
 Checked against `az aks get-versions --location uksouth` and the azurerm provider 4.x documentation on 17 October 2026.
+
+Tested through OneCloud on Azure (UK South) on 17 and 18 October 2026: order, Scale node pool 1 to 2 and back, Upgrade 1.35 to 1.36, Stop cluster (about 2 minutes), Start cluster (about 5 minutes, sent 55 minutes after the stop because Azure asks for 15 to 30 minutes in between) and Remove all worked.
