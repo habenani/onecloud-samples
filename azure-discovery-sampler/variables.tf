@@ -46,7 +46,7 @@ variable "ssh_public_key" {
 }
 
 variable "vm_size" {
-  description = "Size of the virtual machine. Pick the smallest size your subscription offers in the region, for example Standard_B2ats_v2."
+  description = "Size of the virtual machine. Pick the smallest size your subscription has quota for in the region, for example Standard_B2ats_v2 (trial subscriptions often have no B v2 quota: use Standard_D2s_v3)."
   type        = string
   default     = "Standard_B2ats_v2"
 

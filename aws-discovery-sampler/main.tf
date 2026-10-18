@@ -103,11 +103,12 @@ resource "aws_instance" "this" {
   subnet_id              = aws_subnet.a.id
   vpc_security_group_ids = [aws_security_group.this.id]
   tags                   = merge(local.tags, { Name = "${var.name}-vm" })
-  volume_tags            = merge(local.tags, { Name = "${var.name}-root" })
 
+  # tags on the root volume only: volume_tags would also rename the data volume attached later
   root_block_device {
     volume_size = 8
     volume_type = "gp3"
+    tags        = merge(local.tags, { Name = "${var.name}-root" })
   }
 }
 
