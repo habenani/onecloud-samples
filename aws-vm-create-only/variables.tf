@@ -17,7 +17,7 @@ variable "name" {
 variable "test_tag" {
   description = "Value of the OneCloudTest tag, used to find everything this order created, for example a3-1a2b3c."
   type        = string
-  default     = "onecloud-demo"
+  default     = "onecloud-sample"
 }
 
 variable "instance_type" {
