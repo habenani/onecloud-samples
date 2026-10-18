@@ -24,7 +24,7 @@ variable "storage_account_name" {
 variable "replication_type" {
   description = "Storage replication"
   type        = string
-  default     = "LRS"
+  default     = "ZRS"
   validation {
     condition     = contains(["LRS", "GRS", "ZRS"], var.replication_type)
     error_message = "replication_type must be LRS, GRS or ZRS"
