@@ -17,6 +17,10 @@ in Employee Center when the folder is scanned by a OneCloud template source.
 | `aws-discovery-sampler` | One of each AWS type OneCloud records in the CMDB (EC2, EBS, VPC, subnets, security group, internal ALB, RDS PostgreSQL, unmapped types). Order it to check how your instance records and discovers each type, then remove it. | AWS |
 | `aws-eks-basic` | An EKS cluster with one managed node group and its two IAM roles (path /onecloud/) in the default VPC. Planned by OneCloud, not applied: needs a key with EKS and IAM rights. | AWS |
 | `aws-ecs-fargate` | An ECS cluster, task definition, security group and Fargate service from a public image in the default VPC. Planned by OneCloud, not applied. | AWS |
+| `gcp-three-tier` | A Google Cloud VPC network of its own with a web server (external IP address, one firewall rule per port) and an app server without an external address (e2-micro), persistent data disks on the app server and a private Cloud Storage bucket. No Cloud NAT. | Google Cloud |
+| `gcp-gke-basic` | A zonal GKE Standard cluster with one managed node pool (1 to 3 nodes), Kubernetes version from a list, no release channel. Used for Scale node pool and Upgrade Kubernetes version. | Google Cloud |
+| `oci-three-tier` | An Oracle Cloud VCN of its own with a public web server and a private app server on flexible shapes (Always Free Arm choice), a network security group rule per port, block volumes on the app server and a private Object Storage bucket. No NAT gateway. | Oracle Cloud |
+| `oci-oke-basic` | An OKE basic cluster (no cluster fee) with one managed node pool (1 to 3 nodes, flexible shape) in a VCN of its own. Used for Scale node pool and Upgrade Kubernetes version. | Oracle Cloud |
 
 Conventions OneCloud reads:
 
