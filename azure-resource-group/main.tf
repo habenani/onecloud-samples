@@ -25,5 +25,5 @@ resource "azurerm_storage_account" "this" {
   location                 = azurerm_resource_group.this.location
   account_tier             = "Standard"
   account_replication_type = var.replication_type
-  tags                     = merge(var.tags, { "data-class" = "internal" })
+  tags                     = merge(var.tags, { "data-class" = "confidential" })
 }
