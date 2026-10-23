@@ -1,0 +1,57 @@
+{
+  "//": "Azure network written only in Terraform JSON syntax. OneCloud reads the variables from variables.tf.json.",
+  "terraform": {
+    "required_version": ">= 1.5",
+    "required_providers": {
+      "azurerm": { "source": "hashicorp/azurerm", "version": "~> 4.0" }
+    }
+  },
+  "provider": {
+    "azurerm": {
+      "features": {
+        "resource_group": { "prevent_deletion_if_contains_resources": true }
+      }
+    }
+  },
+  "locals": {
+    "tags": "${merge(var.labels, var.tags, {purpose = var.purpose})}"
+  },
+  "resource": {
+    "azurerm_resource_group": {
+      "main": {
+        "name": "${var.name}-rg",
+        "location": "${var.location}",
+        "tags": "${local.tags}"
+      }
+    },
+    "azurerm_virtual_network": {
+      "main": {
+        "name": "${var.name}-vnet",
+        "location": "${azurerm_resource_group.main.location}",
+        "resource_group_name": "${azurerm_resource_group.main.name}",
+        "address_space": "${var.address_space}",
+        "dns_servers": "${var.dns_servers}",
+        "tags": "${local.tags}"
+      }
+    },
+    "azurerm_subnet": {
+      "this": {
+        "for_each": "${var.subnets}",
+        "name": "${each.key}",
+        "resource_group_name": "${azurerm_resource_group.main.name}",
+        "virtual_network_name": "${azurerm_virtual_network.main.name}",
+        "address_prefixes": ["${each.value.prefix}"],
+        "service_endpoints": "${each.value.service_endpoints}"
+      }
+    },
+    "azurerm_network_security_group": {
+      "main": {
+        "name": "${var.name}-nsg",
+        "location": "${azurerm_resource_group.main.location}",
+        "resource_group_name": "${azurerm_resource_group.main.name}",
+        "tags": "${merge(local.tags, {retention_days = tostring(var.retention_days), shared_key_set = var.shared_key == null ? \"no\" : \"yes\"})}",
+        "security_rule": "${[for r in var.nsg_rules : {name = r.name, priority = r.priority, direction = \"Inbound\", access = \"Allow\", protocol = \"Tcp\", source_port_range = \"*\", destination_port_range = r.port, source_address_prefix = r.source, destination_address_prefix = \"*\", description = \"\", source_port_ranges = null, destination_port_ranges = null, source_address_prefixes = null, destination_address_prefixes = null, source_application_security_group_ids = null, destination_application_security_group_ids = null}]}"
+      }
+    }
+  }
+}

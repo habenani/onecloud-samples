@@ -1,0 +1,23 @@
+{
+  "variable": {
+    "storage_class": {
+      "description": "Default storage class tag for objects",
+      "type": "string",
+      "default": "STANDARD",
+      "validation": {
+        "condition": "${contains([\"STANDARD\", \"STANDARD_IA\", \"GLACIER_IR\"], var.storage_class)}",
+        "error_message": "Pick STANDARD, STANDARD_IA or GLACIER_IR."
+      }
+    },
+    "expiry_days": {
+      "description": "Days before objects expire",
+      "type": "number",
+      "default": 365
+    },
+    "tags": {
+      "description": "Tags applied by OneCloud",
+      "type": "map(string)",
+      "default": {}
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# Presentation hints for OneCloud (optional).
+variables:
+  owner_email:
+    label: Team mailbox
+    section: details
+  app_settings:
+    section: more
+  allowed_ports:
+    label: Admin ports
+    section: access

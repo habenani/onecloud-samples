@@ -29,3 +29,13 @@ Conventions OneCloud reads:
 - A variable named `tags` of type `map(string)` receives the standard OneCloud tags.
 - `output` values are shown to the requester after apply unless marked sensitive.
 - `README.md` first paragraph becomes the catalog item short description.
+
+## Complex templates (`complex/`)
+
+Templates that exercise every variable type, attribute and file layout OneCloud reads. Point a template source at the path `complex` to scan them.
+
+| Folder | What it provisions | Credentials needed |
+|---|---|---|
+| `complex/aws-landing-zone` | A VPC with three subnets (local module), a network ACL, a security group and a private S3 bucket with versioning, a lifecycle rule and one object listing every value Terraform received. 45 variables over four files, `terraform.tfvars`, `*.auto.tfvars`, `*.auto.tfvars.json`, a registry module, sensitive and ephemeral variables. Free while idle. | AWS |
+| `complex/azure-network-json` | A resource group, virtual network, subnets and a network security group, written only in Terraform JSON syntax, with `terraform.tfvars.json`. Free. | Azure |
+| `complex/aws-mixed-bucket` | A private S3 bucket with an expiry rule, mixing `.tf` and `.tf.json` files. Free while empty. | AWS |
