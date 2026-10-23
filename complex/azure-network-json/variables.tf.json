@@ -1,0 +1,90 @@
+{
+  "variable": {
+    "name": {
+      "//": "JSON comments use the // property.",
+      "description": "Name of the network. Lower case letters, digits and hyphens, 3 to 20 characters.",
+      "type": "string",
+      "validation": [
+        {
+          "condition": "${can(regex(\"^[a-z][a-z0-9-]{2,19}$\", var.name))}",
+          "error_message": "Use 3 to 20 lower case letters, digits or hyphens, starting with a letter."
+        }
+      ]
+    },
+    "location": {
+      "description": "Azure region code",
+      "type": "string",
+      "default": "uksouth"
+    },
+    "purpose": {
+      "description": "What the network is for",
+      "type": "string",
+      "default": "workload",
+      "validation": [
+        {
+          "condition": "${contains([\"workload\", \"shared\", \"sandbox\"], var.purpose)}",
+          "error_message": "Purpose is workload, shared or sandbox."
+        }
+      ]
+    },
+    "address_space": {
+      "description": "Address ranges of the virtual network",
+      "type": "list(string)",
+      "default": ["10.60.0.0/16"],
+      "validation": [
+        {
+          "condition": "${alltrue([for c in var.address_space : can(cidrhost(c, 0))])}",
+          "error_message": "Each range must be a CIDR block."
+        }
+      ]
+    },
+    "subnets": {
+      "description": "Subnets by name with their address prefix and service endpoints",
+      "type": "map(object({prefix = string, service_endpoints = optional(list(string), [])}))",
+      "default": {
+        "app": { "prefix": "10.60.1.0/24" },
+        "data": { "prefix": "10.60.2.0/24", "service_endpoints": ["Microsoft.Storage"] }
+      }
+    },
+    "nsg_rules": {
+      "description": "Inbound rules for the network security group",
+      "type": "list(object({name = string, priority = number, port = string, source = optional(string, \"VirtualNetwork\")}))",
+      "default": [
+        { "name": "https", "priority": 100, "port": "443" }
+      ]
+    },
+    "dns_servers": {
+      "description": "Custom DNS servers",
+      "type": "list(string)",
+      "default": []
+    },
+    "retention_days": {
+      "description": "Days to keep flow logs (7 to 90)",
+      "type": "number",
+      "default": 30,
+      "validation": [
+        {
+          "condition": "${var.retention_days >= 7 && var.retention_days <= 90}",
+          "error_message": "Use 7 to 90 days."
+        }
+      ]
+    },
+    "shared_key": {
+      "description": "Pre-shared key for the VPN partner, if any",
+      "type": "string",
+      "default": null,
+      "sensitive": true
+    },
+    "labels": {
+      "description": "Labels from terraform.tfvars.json",
+      "type": "map(string)",
+      "default": {}
+    },
+    "tags": {
+      "description": "Tags applied by OneCloud",
+      "type": "map(string)",
+      "default": {},
+      "nullable": false
+    }
+  }
+}
