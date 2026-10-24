@@ -102,8 +102,8 @@ variable "web_machine_type" {
   default     = "e2-micro"
 
   validation {
-    condition     = contains(["e2-micro", "e2-small"], var.web_machine_type)
-    error_message = "web_machine_type must be e2-micro or e2-small."
+    condition     = contains(["e2-micro", "e2-small", "e2-medium", "n2-standard-2"], var.web_machine_type)
+    error_message = "web_machine_type must be e2-micro, e2-small, e2-medium or n2-standard-2."
   }
 }
 
@@ -113,8 +113,8 @@ variable "app_machine_type" {
   default     = "e2-micro"
 
   validation {
-    condition     = contains(["e2-micro", "e2-small"], var.app_machine_type)
-    error_message = "app_machine_type must be e2-micro or e2-small."
+    condition     = contains(["e2-micro", "e2-small", "e2-medium", "n2-standard-2"], var.app_machine_type)
+    error_message = "app_machine_type must be e2-micro, e2-small, e2-medium or n2-standard-2."
   }
 }
 
@@ -148,6 +148,17 @@ variable "app_data_disk_sizes_gb" {
   validation {
     condition     = alltrue([for s in var.app_data_disk_sizes_gb : s >= 10 && s <= 100]) && length(var.app_data_disk_sizes_gb) <= 4
     error_message = "app_data_disk_sizes_gb must hold up to 4 sizes from 10 to 100."
+  }
+}
+
+variable "disk_type" {
+  description = "Persistent disk type of the boot and data disks: pd-balanced (default), pd-standard or pd-ssd."
+  type        = string
+  default     = "pd-balanced"
+
+  validation {
+    condition     = contains(["pd-balanced", "pd-standard", "pd-ssd"], var.disk_type)
+    error_message = "disk_type must be pd-balanced, pd-standard or pd-ssd."
   }
 }
 

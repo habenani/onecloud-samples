@@ -10,7 +10,8 @@ Creates a web server and an app server in Google Cloud in a VPC network of their
 | `region` | text | Map it to the account region (Variable mappings, value source Region) so it is not asked |
 | `zone_suffix` | select box | Zone letter inside the region, default `a` |
 | `project` | text | Leave empty: the project of the cloud account (GOOGLE_PROJECT) is used. Hide it in the variable mapping |
-| `web_machine_type`, `app_machine_type` | select box | e2-micro (default) or e2-small |
+| `web_machine_type`, `app_machine_type` | select box | e2-micro (default, Always Free in us-west1, us-central1 and us-east1), e2-small, e2-medium or n2-standard-2 |
+| `disk_type` | select box | pd-balanced (default), pd-standard or pd-ssd, for the boot and data disks |
 | `web_boot_disk_size`, `app_boot_disk_size` | number | Default 10 GB, grow only |
 | `app_data_disk_sizes_gb` | list | Default one 10 GB balanced persistent disk, up to 4 |
 | `ingress_ports` | list | TCP ports of the web tier, default 80 and 443 |
