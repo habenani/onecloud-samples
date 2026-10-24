@@ -1,6 +1,6 @@
 # Google Cloud GKE basic
 
-Creates a small zonal Google Kubernetes Engine Standard cluster in the project's default network with one separately managed node pool of 1 to 3 nodes. Pick the Kubernetes version, the number of nodes and the machine type when you order. The cluster has no release channel and the node pool does not upgrade itself, so the version only changes when someone runs Upgrade Kubernetes version. Remove deletes the cluster and its nodes (deletion protection is off). Needs a Google Cloud cloud account in OneCloud whose service account has Kubernetes Engine Admin and Service Account User in the project, and the Kubernetes Engine API enabled.
+Creates a small zonal Google Kubernetes Engine Standard cluster in the project's default network with one separately managed node pool of 1 to 3 nodes. Pick the Kubernetes version, the number of nodes and the machine type when you order. The cluster is enrolled in a release channel (REGULAR unless you change `release_channel`), because Google no longer lets new customers create clusters without one. Google may also upgrade the cluster within the channel on its own schedule; Upgrade Kubernetes version moves it to the next minor version when you choose. Remove deletes the cluster and its nodes (deletion protection is off). Needs a Google Cloud cloud account in OneCloud whose service account has Kubernetes Engine Admin and Service Account User in the project, and the Kubernetes Engine API enabled.
 
 ## What the requester fills in
 
@@ -10,7 +10,8 @@ Creates a small zonal Google Kubernetes Engine Standard cluster in the project's
 | `region` | text | Map it to the account region (Variable mappings, value source Region) so it is not asked |
 | `zone_suffix` | select box | Zone letter of the zonal cluster, default `a` |
 | `project` | text | Leave empty: the project of the cloud account (GOOGLE_PROJECT) is used. Hide it in the variable mapping |
-| `kubernetes_version` | select box | 1.34 (default), 1.35 or 1.36. GKE picks the newest patch it offers in the zone |
+| `kubernetes_version` | select box | 1.34 (default), 1.35 or 1.36. GKE picks the newest patch the release channel offers |
+| `release_channel` | select box | REGULAR (default), STABLE, RAPID or EXTENDED |
 | `node_count` | number | 1 (default) to 3 |
 | `node_machine_type` | select box | e2-medium (default) or e2-standard-2 |
 | `node_disk_size_gb` | number | Default 30 GB per node |
@@ -38,7 +39,7 @@ The cluster management fee per cluster hour (one zonal cluster per billing accou
 
 ## Provider version
 
-Written for `hashicorp/google` 6.x and 7.x (validated with 7.x on Terraform 1.11). The version list is a starting point: check `gcloud container get-server-config --zone <zone>` and change the validation list to the minor versions your zone offers.
+Written for `hashicorp/google` 6.x and 7.x (validated with 7.x on Terraform 1.11). The version list is a starting point: check `gcloud container get-server-config --zone <zone>` (channels, validVersions of your channel) and change the validation list to the minor versions your channel offers.
 
 ## Try it locally
 

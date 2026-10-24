@@ -1,7 +1,10 @@
 # Google Kubernetes Engine basic sample for OneCloud.
 # A zonal GKE Standard cluster in the project's default network with one separately managed node pool of 1 to 3
-# nodes. The cluster has no release channel, so the Kubernetes version stays where the order put it until someone
-# runs Upgrade Kubernetes version. deletion_protection is off so Remove can delete the cluster.
+# nodes, enrolled in a release channel (REGULAR by default). Google refuses new clusters without a release channel for
+# new customers ("not enrolling clusters in a release channel is now only allowed for existing customers"), so the
+# channel is required. The order picks the Kubernetes minor version; GKE takes the newest patch of that minor the
+# channel offers. Within a channel Google upgrades the control plane and nodes on its own schedule as well.
+# deletion_protection is off so Remove can delete the cluster.
 #
 # Day-2 through OneCloud: Scale node pool sets node_count, Upgrade Kubernetes version sets kubernetes_version (control
 # plane first, then the node pool), Update changes the other order form settings.
@@ -24,24 +27,20 @@ locals {
 }
 
 # the newest patch GKE offers in the zone for the chosen minor version
-data "google_container_engine_versions" "this" {
-  location       = local.zone
-  version_prefix = "${var.kubernetes_version}."
-}
-
 resource "google_container_cluster" "this" {
   name                = var.name
   location            = local.zone
   deletion_protection = false
-  min_master_version  = data.google_container_engine_versions.this.latest_master_version
-  resource_labels     = local.labels
+  # a minor version ("1.35"): GKE resolves it to the newest patch the release channel offers for that minor
+  min_master_version = var.kubernetes_version
+  resource_labels    = local.labels
 
   # the default pool is removed straight away; the managed pool below holds the nodes
   remove_default_node_pool = true
   initial_node_count       = 1
 
   release_channel {
-    channel = "UNSPECIFIED"
+    channel = var.release_channel
   }
 
   ip_allocation_policy {}
@@ -52,11 +51,12 @@ resource "google_container_node_pool" "this" {
   location   = local.zone
   cluster    = google_container_cluster.this.name
   node_count = var.node_count
-  version    = data.google_container_engine_versions.this.latest_node_version
+  # the nodes follow the control plane: Upgrade Kubernetes version upgrades the control plane first, then this pool
+  version = google_container_cluster.this.master_version
 
   management {
     auto_repair  = true
-    auto_upgrade = false
+    auto_upgrade = true # required by GKE for node pools of a cluster in a release channel
   }
 
   upgrade_settings {
