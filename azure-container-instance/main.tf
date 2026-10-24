@@ -1,10 +1,10 @@
-# Azure Container Instances sample for OneCloud.
+# Azure Container Instances sample for OneCloudify.
 # One resource group and one Linux container group with a single container from a public image, a public IP address
-# and a DNS name. Day-2 through OneCloud: Start, Stop and Restart containers (az container start, stop and restart),
+# and a DNS name. Day-2 through OneCloudify: Start, Stop and Restart containers (az container start, stop and restart),
 # and Update for the image, CPU and memory (Terraform recreates the group for those).
 
 locals {
-  # Template tags first, OneCloud tags last so the deployment correlation tag always wins.
+  # Template tags first, OneCloudify tags last so the deployment correlation tag always wins.
   tags = merge(
     {
       Name        = var.name

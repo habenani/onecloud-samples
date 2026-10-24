@@ -19,7 +19,7 @@ variable "resource_group_name" {
 }
 
 variable "location" {
-  description = "Azure region code, for example uksouth. OneCloud fills it from the account region when the variable mapping says so."
+  description = "Azure region code, for example uksouth. OneCloudify fills it from the account region when the variable mapping says so."
   type        = string
   default     = "uksouth"
 }
@@ -178,13 +178,13 @@ variable "cost_centre" {
 }
 
 variable "tags" {
-  description = "Tags applied to every resource. OneCloud passes the deployment tags here, including the onecloud_deployment correlation tag."
+  description = "Tags applied to every resource. OneCloudify passes the deployment tags here, including the onecloud_deployment correlation tag."
   type        = map(string)
   default     = {}
 }
 
 # Database tier, not active yet. Uncomment these two variables together with the database block at the end of main.tf.
-# The names match what the OneCloud operations Change database size (db_sku_name) and Grow database storage
+# The names match what the OneCloudify operations Change database size (db_sku_name) and Grow database storage
 # (db_storage_gb) bind to.
 #
 # variable "db_sku_name" {

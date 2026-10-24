@@ -9,7 +9,7 @@ variable "name" {
 }
 
 variable "location" {
-  description = "Azure region code, for example uksouth. OneCloud fills it from the region picked on the order form."
+  description = "Azure region code, for example uksouth. OneCloudify fills it from the region picked on the order form."
   type        = string
   default     = "uksouth"
 }
@@ -79,7 +79,7 @@ variable "test_tag" {
 }
 
 variable "tags" {
-  description = "Tags applied to every resource. OneCloud passes the deployment tags here, including the onecloud_deployment correlation tag."
+  description = "Tags applied to every resource. OneCloudify passes the deployment tags here, including the onecloud_deployment correlation tag."
   type        = map(string)
   default     = {}
 }

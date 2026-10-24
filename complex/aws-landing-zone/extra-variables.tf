@@ -1,5 +1,5 @@
 # Settings written into the configuration object (s3://<bucket>/<object_prefix>settings.json).
-# They exercise every Terraform type and literal form OneCloud has to read.
+# They exercise every Terraform type and literal form OneCloudify has to read.
 
 variable "extra_tags" {
   description = "Extra tags for every resource"

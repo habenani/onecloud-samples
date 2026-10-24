@@ -1,6 +1,6 @@
 # Azure three tier
 
-Creates a web server and an app server in Azure, each in its own subnet with its own network security group, plus a private storage account for app data, all in a resource group of their own. The web server has a static public IP and accepts the ports you list; the app server has no public IP, takes traffic from the web subnet only and carries managed data disks. Remove deletes the resource group and everything in it. Needs an Azure cloud account in OneCloud whose credential is an Azure Service Principal.
+Creates a web server and an app server in Azure, each in its own subnet with its own network security group, plus a private storage account for app data, all in a resource group of their own. The web server has a static public IP and accepts the ports you list; the app server has no public IP, takes traffic from the web subnet only and carries managed data disks. Remove deletes the resource group and everything in it. Needs an Azure cloud account in OneCloudify whose credential is an Azure Service Principal.
 
 ## What the requester fills in
 
@@ -19,7 +19,7 @@ Creates a web server and an app server in Azure, each in its own subnet with its
 | `address_space`, `web_subnet_prefix`, `app_subnet_prefix` | text | Defaults in `10.70.0.0/16` |
 | `cost_centre` | text | Default `CC-1001`, put on every resource as the `cost_centre` tag |
 | `test_tag` | text | Optional. Puts an `OneCloudTest` tag on every resource for test clean up |
-| `tags` | filled by OneCloud | Hide it in the variable mapping |
+| `tags` | filled by OneCloudify | Hide it in the variable mapping |
 
 ## Day-2 operations it lights up
 

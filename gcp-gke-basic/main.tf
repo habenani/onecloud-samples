@@ -1,4 +1,4 @@
-# Google Kubernetes Engine basic sample for OneCloud.
+# Google Kubernetes Engine basic sample for OneCloudify.
 # A zonal GKE Standard cluster in the project's default network with one separately managed node pool of 1 to 3
 # nodes, enrolled in a release channel (REGULAR by default). Google refuses new clusters without a release channel for
 # new customers ("not enrolling clusters in a release channel is now only allowed for existing customers"), so the
@@ -6,7 +6,7 @@
 # channel offers. Within a channel Google upgrades the control plane and nodes on its own schedule as well.
 # deletion_protection is off so Remove can delete the cluster.
 #
-# Day-2 through OneCloud: Scale node pool sets node_count, Upgrade Kubernetes version sets kubernetes_version (the
+# Day-2 through OneCloudify: Scale node pool sets node_count, Upgrade Kubernetes version sets kubernetes_version (the
 # control plane; GKE then upgrades the nodes to match), Update changes the other order form settings.
 
 locals {

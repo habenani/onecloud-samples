@@ -1,9 +1,9 @@
-# Google Cloud three tier sample for OneCloud.
+# Google Cloud three tier sample for OneCloudify.
 # A VPC network of its own with a web and an app subnet, one firewall rule per web port, a web server with an
 # external IP address and an app server without one (Debian 12), persistent data disks on the app server and a private
 # Cloud Storage bucket for app data. Remove deletes all of it, the bucket with its objects included.
 #
-# Day-2 through OneCloud: variables named <tier>_<setting> belong to google_compute_instance.web or .app, so an
+# Day-2 through OneCloudify: variables named <tier>_<setting> belong to google_compute_instance.web or .app, so an
 # operation run on one server changes only that server (Resize through web_machine_type and app_machine_type, Expand
 # disk through web_boot_disk_size and app_boot_disk_size). Add a data disk grows app_data_disk_sizes_gb, Open a port
 # and Close a port change ingress_ports of the web tier (one firewall rule each), Start, Stop and Restart go through

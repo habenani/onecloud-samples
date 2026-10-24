@@ -1,6 +1,6 @@
 # Oracle Cloud three tier
 
-Creates a web server and an app server in Oracle Cloud Infrastructure in a VCN of their own: the web server sits in a public subnet behind an internet gateway with a public IP address and accepts the ports you list (one network security group rule per port), the app server sits in a private subnet that allows no public IP addresses and takes traffic on its app port from the web tier only. Both run Oracle Linux 9 on flexible shapes, the app server carries block volumes, and a private Object Storage bucket holds app data. There is no NAT gateway. Remove deletes everything; Object Storage only deletes an empty bucket, so empty it first if the app wrote to it. Needs an Oracle Cloud cloud account in OneCloud whose user may manage networks, instances, volumes and buckets in the account's compartment (cloud-bootstrap/oci-bootstrap.sh writes that policy).
+Creates a web server and an app server in Oracle Cloud Infrastructure in a VCN of their own: the web server sits in a public subnet behind an internet gateway with a public IP address and accepts the ports you list (one network security group rule per port), the app server sits in a private subnet that allows no public IP addresses and takes traffic on its app port from the web tier only. Both run Oracle Linux 9 on flexible shapes, the app server carries block volumes, and a private Object Storage bucket holds app data. There is no NAT gateway. Remove deletes everything; Object Storage only deletes an empty bucket, so empty it first if the app wrote to it. Needs an Oracle Cloud cloud account in OneCloudify whose user may manage networks, instances, volumes and buckets in the account's compartment (cloud-bootstrap/oci-bootstrap.sh writes that policy).
 
 ## What the requester fills in
 
@@ -8,7 +8,7 @@ Creates a web server and an app server in Oracle Cloud Infrastructure in a VCN o
 |---|---|---|
 | `name` | text, mandatory | Base name, 2 to 24 lowercase characters, starting with a letter |
 | `region` | text | Map it to the account region (Variable mappings, value source Region) so it is not asked |
-| `compartment_ocid` | filled by OneCloud | Hide it in the variable mapping: OneCloud sets TF_VAR_compartment_ocid from the cloud account |
+| `compartment_ocid` | filled by OneCloudify | Hide it in the variable mapping: OneCloudify sets TF_VAR_compartment_ocid from the cloud account |
 | `web_shape`, `app_shape` | select box | shape:OCPUs:memory GB, default `VM.Standard.E4.Flex:1:8`. `VM.Standard.A1.Flex:1:6` is Always Free |
 | `web_boot_volume_size_in_gbs`, `app_boot_volume_size_in_gbs` | number | Default 50 GB (the OCI minimum), grow only |
 | `app_data_disk_sizes_gb` | list | Default one 50 GB block volume, up to 4 |
@@ -19,7 +19,7 @@ Creates a web server and an app server in Oracle Cloud Infrastructure in a VCN o
 | `vcn_cidr`, `public_subnet_cidr`, `private_subnet_cidr` | text | Defaults in `10.70.0.0/16` |
 | `cost_centre` | text | Default `CC-1001`, put on every resource as the `cost_centre` free form tag |
 | `test_tag` | text | Optional. Puts an `OneCloudTest` tag on every resource for test clean up |
-| `tags` | filled by OneCloud | Hide it in the variable mapping. Applied as free form tags |
+| `tags` | filled by OneCloudify | Hide it in the variable mapping. Applied as free form tags |
 
 ## Day-2 operations it lights up
 
@@ -43,7 +43,7 @@ Two flexible shape servers (OCPU hours and memory GB hours), two 50 GB boot volu
 
 ## Provider version
 
-Written for `oracle/oci` 6.x to 9.x (validated with 9.10 on Terraform 1.11). The credential is not a template variable: the provider reads TF_VAR_tenancy_ocid, TF_VAR_user_ocid, TF_VAR_fingerprint, TF_VAR_private_key and TF_VAR_region from the environment OneCloud sets. Each web port is a separate `oci_core_network_security_group_security_rule`.
+Written for `oracle/oci` 6.x to 9.x (validated with 9.10 on Terraform 1.11). The credential is not a template variable: the provider reads TF_VAR_tenancy_ocid, TF_VAR_user_ocid, TF_VAR_fingerprint, TF_VAR_private_key and TF_VAR_region from the environment OneCloudify sets. Each web port is a separate `oci_core_network_security_group_security_rule`.
 
 ## Try it locally
 

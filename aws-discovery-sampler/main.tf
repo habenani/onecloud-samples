@@ -1,5 +1,5 @@
-# AWS discovery sampler for OneCloud.
-# One small deployment that holds one of each AWS resource type OneCloud records in the CMDB, so an admin can check in
+# AWS discovery sampler for OneCloudify.
+# One small deployment that holds one of each AWS resource type OneCloudify records in the CMDB, so an admin can check in
 # one run how each type lands: written from the Terraform state, confirmed by targeted pattern discovery where the
 # resource type map names a pattern, or recorded in the generic Cloud Resource class when the type has no mapping.
 # Everything is private (no internet gateway, internal load balancer, database not publicly accessible). Order it,
@@ -125,9 +125,9 @@ resource "aws_volume_attachment" "data" {
   instance_id = aws_instance.this.id
 }
 
-# A type with no resource type mapping: OneCloud records it in the generic Cloud Resource class.
+# A type with no resource type mapping: OneCloudify records it in the generic Cloud Resource class.
 resource "aws_cloudwatch_log_group" "this" {
-  name              = "/onecloud/${var.name}"
+  name              = "/onecloudify/${var.name}"
   retention_in_days = 1
   tags              = local.tags
 }

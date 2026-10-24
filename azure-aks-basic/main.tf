@@ -1,13 +1,13 @@
-# Azure Kubernetes Service sample for OneCloud.
+# Azure Kubernetes Service sample for OneCloudify.
 # One resource group and one AKS cluster with a single system node pool, free tier control plane, system assigned
 # identity and the Azure default network (kubenet free, no virtual network of its own). Small on purpose: one node of
 # 2 vCPUs is enough for a test cluster.
 #
-# Day-2 through OneCloud: Scale node pool sets node_count, Upgrade Kubernetes version sets kubernetes_version (the
+# Day-2 through OneCloudify: Scale node pool sets node_count, Upgrade Kubernetes version sets kubernetes_version (the
 # control plane and the node pool move together), Stop cluster and Start cluster use az aks stop and az aks start.
 
 locals {
-  # Template tags first, OneCloud tags last so the deployment correlation tag always wins.
+  # Template tags first, OneCloudify tags last so the deployment correlation tag always wins.
   tags = merge(
     {
       Name        = var.name

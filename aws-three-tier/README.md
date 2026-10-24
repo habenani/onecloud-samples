@@ -1,6 +1,6 @@
 # AWS three tier
 
-Creates a web server and an app server in AWS in a VPC of their own: the web server sits in a public subnet behind an internet gateway and accepts the ports you list, the app server sits in a private subnet with no way out to the internet and takes traffic on its app port from the web tier only. The app server carries EBS data volumes, and a private S3 bucket holds app data. There is no NAT gateway, so the network itself costs nothing by the hour. Remove deletes everything, the bucket and its objects included. Needs an AWS cloud account in OneCloud whose identity may build VPCs, instances, volumes, security groups and S3 buckets in the region (cloud-bootstrap/aws-bootstrap.sh gives it exactly that).
+Creates a web server and an app server in AWS in a VPC of their own: the web server sits in a public subnet behind an internet gateway and accepts the ports you list, the app server sits in a private subnet with no way out to the internet and takes traffic on its app port from the web tier only. The app server carries EBS data volumes, and a private S3 bucket holds app data. There is no NAT gateway, so the network itself costs nothing by the hour. Remove deletes everything, the bucket and its objects included. Needs an AWS cloud account in OneCloudify whose identity may build VPCs, instances, volumes, security groups and S3 buckets in the region (cloud-bootstrap/aws-bootstrap.sh gives it exactly that).
 
 ## What the requester fills in
 
@@ -18,7 +18,7 @@ Creates a web server and an app server in AWS in a VPC of their own: the web ser
 | `vpc_cidr`, `public_subnet_cidr`, `private_subnet_cidr` | text | Defaults in `10.80.0.0/16` |
 | `cost_centre` | text | Default `CC-1001`, put on every resource as the `cost_centre` tag |
 | `test_tag` | text | Optional. Puts an `OneCloudTest` tag on every resource for test clean up |
-| `tags` | filled by OneCloud | Hide it in the variable mapping |
+| `tags` | filled by OneCloudify | Hide it in the variable mapping |
 
 ## Day-2 operations it lights up
 

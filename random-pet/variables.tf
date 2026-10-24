@@ -27,7 +27,7 @@ variable "enable_marker" {
 }
 
 variable "tags" {
-  description = "Tags applied by OneCloud"
+  description = "Tags applied by OneCloudify"
   type        = map(string)
   default     = {}
 }

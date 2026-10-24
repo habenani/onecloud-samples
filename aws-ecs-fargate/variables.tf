@@ -54,7 +54,7 @@ variable "port" {
 }
 
 variable "region" {
-  description = "AWS region code. OneCloud fills it from the region picked on the order."
+  description = "AWS region code. OneCloudify fills it from the region picked on the order."
   type        = string
   default     = "us-east-1"
 }
@@ -82,7 +82,7 @@ variable "cost_centre" {
 }
 
 variable "tags" {
-  description = "Tags applied to every resource. OneCloud passes the deployment tags here, including the onecloud_deployment correlation tag."
+  description = "Tags applied to every resource. OneCloudify passes the deployment tags here, including the onecloud_deployment correlation tag."
   type        = map(string)
   default     = {}
 }

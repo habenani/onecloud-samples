@@ -6,7 +6,7 @@ The bucket holds one object, `configs/settings.json`, with every value Terraform
 
 ## For template authors
 
-This template exercises every variable type and file layout OneCloud reads: variables split over several `.tf` files, `terraform.tfvars`, `*.auto.tfvars` and `*.auto.tfvars.json`, a local module, a registry module, heredoc and unicode defaults, sensitive and ephemeral variables and validation blocks of every kind.
+This template exercises every variable type and file layout OneCloudify reads: variables split over several `.tf` files, `terraform.tfvars`, `*.auto.tfvars` and `*.auto.tfvars.json`, a local module, a registry module, heredoc and unicode defaults, sensitive and ephemeral variables and validation blocks of every kind.
 
 | File | Purpose |
 |---|---|

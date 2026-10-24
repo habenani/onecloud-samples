@@ -1,9 +1,9 @@
-# Amazon EKS sample for OneCloud.
+# Amazon EKS sample for OneCloudify.
 # One EKS cluster in the default VPC with one managed node group, and the two IAM roles EKS needs. The key that runs it
 # needs EKS, EC2 describe and IAM role rights (iam:CreateRole, iam:AttachRolePolicy, iam:PassRole and their deletes).
-# Both roles live on the IAM path /onecloud/, the only path cloud-bootstrap/aws-bootstrap.yaml lets OneCloud manage.
+# Both roles live on the IAM path /onecloudify/, the only path cloud-bootstrap/aws-bootstrap.yaml lets OneCloudify manage.
 #
-# Day-2 through OneCloud: Scale node pool sets node_count (desired size of the node group), Upgrade Kubernetes version
+# Day-2 through OneCloudify: Scale node pool sets node_count (desired size of the node group), Upgrade Kubernetes version
 # sets kubernetes_version (control plane and node group). EKS has no stop for a cluster.
 
 locals {
@@ -65,7 +65,7 @@ data "aws_iam_policy_document" "node_assume" {
 
 resource "aws_iam_role" "cluster" {
   name               = "${var.name}-cluster"
-  path               = "/onecloud/"
+  path               = "/onecloudify/"
   assume_role_policy = data.aws_iam_policy_document.cluster_assume.json
   tags               = local.tags
 }
@@ -77,7 +77,7 @@ resource "aws_iam_role_policy_attachment" "cluster" {
 
 resource "aws_iam_role" "node" {
   name               = "${var.name}-node"
-  path               = "/onecloud/"
+  path               = "/onecloudify/"
   assume_role_policy = data.aws_iam_policy_document.node_assume.json
   tags               = local.tags
 }

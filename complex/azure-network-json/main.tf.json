@@ -1,5 +1,5 @@
 {
-  "//": "Azure network written only in Terraform JSON syntax. OneCloud reads the variables from variables.tf.json.",
+  "//": "Azure network written only in Terraform JSON syntax. OneCloudify reads the variables from variables.tf.json.",
   "terraform": {
     "required_version": ">= 1.5",
     "required_providers": {

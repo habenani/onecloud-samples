@@ -1,11 +1,11 @@
-# Azure Linux virtual machine sample for OneCloud.
+# Azure Linux virtual machine sample for OneCloudify.
 # One template, one unit of deployment: resource group (new or existing), virtual network and subnet (new, or an
 # existing subnet), network security group with an SSH rule, optional public IP, network interface and an Ubuntu 22.04
 # LTS virtual machine. In an existing subnet the security group is attached to the network interface, never to the
 # shared subnet.
 
 locals {
-  # Template tags first, OneCloud tags last so the deployment correlation tag always wins.
+  # Template tags first, OneCloudify tags last so the deployment correlation tag always wins.
   tags = merge(
     {
       Name     = var.name

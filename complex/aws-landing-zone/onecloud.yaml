@@ -1,4 +1,4 @@
-# Presentation hints for OneCloud (optional).
+# Presentation hints for OneCloudify (optional).
 variables:
   owner_email:
     label: Team mailbox

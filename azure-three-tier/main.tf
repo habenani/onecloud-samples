@@ -1,4 +1,4 @@
-# Azure three tier sample for OneCloud.
+# Azure three tier sample for OneCloudify.
 # Its own resource group (Remove deletes the group and everything in it), a virtual network with a web and an app
 # subnet, one network security group per subnet (web: ingress_ports from ingress_source_cidr; app: only from the web
 # subnet), an Ubuntu 24.04 LTS web server with a static Standard public IP, an Ubuntu 24.04 LTS app server with no
@@ -9,7 +9,7 @@
 # change that server only.
 
 locals {
-  # Template tags first, OneCloud tags last so the deployment correlation tag always wins.
+  # Template tags first, OneCloudify tags last so the deployment correlation tag always wins.
   tags = merge(
     {
       Name        = var.name

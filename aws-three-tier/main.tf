@@ -1,10 +1,10 @@
-# AWS three tier sample for OneCloud.
+# AWS three tier sample for OneCloudify.
 # Its own VPC with a public (web) and a private (app) subnet, an internet gateway for the web subnet only (no NAT
 # gateway, so nothing is billed by the hour for the network), security groups per tier, a web and an app server
 # (Amazon Linux 2023), EBS data volumes on the app server and a private S3 bucket for app data. Remove deletes all of
 # it, the bucket with its objects included.
 #
-# Day-2 through OneCloud: variables named <tier>_<setting> belong to aws_instance.web or aws_instance.app, so an
+# Day-2 through OneCloudify: variables named <tier>_<setting> belong to aws_instance.web or aws_instance.app, so an
 # operation run on one server changes only that server (Resize, Expand disk). Add a data disk grows
 # app_data_disk_sizes_gb, Open a port and Close a port change ingress_ports of the web tier, Start, Stop and Restart
 # go through the AWS CLI.
