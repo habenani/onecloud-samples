@@ -42,13 +42,24 @@ variable "name" {
 }
 
 variable "kubernetes_version" {
-  description = "Kubernetes minor version of the control plane and the node pool. GKE picks the newest patch it offers for that minor version in the zone. Upgrade one minor version at a time."
+  description = "Kubernetes minor version of the control plane and the node pool. GKE picks the newest patch the release channel offers for that minor version. Upgrade one minor version at a time."
   type        = string
   default     = "1.34"
 
   validation {
     condition     = contains(["1.34", "1.35", "1.36"], var.kubernetes_version)
-    error_message = "kubernetes_version must be 1.34, 1.35 or 1.36. Check the versions your zone offers with gcloud container get-server-config and change the list to match."
+    error_message = "kubernetes_version must be 1.34, 1.35 or 1.36 (offered by the REGULAR channel in October 2026). Check the versions with gcloud container get-server-config --zone <zone> (channels, validVersions) and change the list to match."
+  }
+}
+
+variable "release_channel" {
+  description = "GKE release channel of the cluster: REGULAR (default), STABLE, RAPID or EXTENDED. The Kubernetes versions you can order depend on the channel."
+  type        = string
+  default     = "REGULAR"
+
+  validation {
+    condition     = contains(["REGULAR", "STABLE", "RAPID", "EXTENDED"], var.release_channel)
+    error_message = "release_channel must be REGULAR, STABLE, RAPID or EXTENDED."
   }
 }
 
