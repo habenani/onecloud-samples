@@ -1,6 +1,6 @@
 # Google Cloud GKE basic
 
-Creates a small zonal Google Kubernetes Engine Standard cluster in the project's default network with one separately managed node pool of 1 to 3 nodes. Pick the Kubernetes version, the number of nodes and the machine type when you order. The cluster is enrolled in a release channel (REGULAR unless you change `release_channel`), because Google no longer lets new customers create clusters without one. Google may also upgrade the cluster within the channel on its own schedule; Upgrade Kubernetes version moves it to the next minor version when you choose. Remove deletes the cluster and its nodes (deletion protection is off). Needs a Google Cloud cloud account in OneCloud whose service account has Kubernetes Engine Admin and Service Account User in the project, and the Kubernetes Engine API enabled.
+Creates a small zonal Google Kubernetes Engine Standard cluster in the project's default network with one separately managed node pool of 1 to 3 nodes. Pick the Kubernetes version, the number of nodes and the machine type when you order. The cluster is enrolled in a release channel (REGULAR unless you change `release_channel`), because Google no longer lets new customers create clusters without one. Google may also upgrade the cluster within the channel on its own schedule; Upgrade Kubernetes version moves it to the next minor version when you choose. Remove deletes the cluster and its nodes (deletion protection is off). Needs a Google Cloud cloud account in OneCloudify whose service account has Kubernetes Engine Admin and Service Account User in the project, and the Kubernetes Engine API enabled.
 
 ## What the requester fills in
 
@@ -17,7 +17,7 @@ Creates a small zonal Google Kubernetes Engine Standard cluster in the project's
 | `node_disk_size_gb` | number | Default 30 GB per node |
 | `cost_centre` | text | Default `CC-1001`, put on the cluster and nodes as the `cost_centre` label |
 | `test_tag` | text | Optional. Puts an `onecloudtest` label on every resource for test clean up |
-| `tags` | filled by OneCloud | Hide it in the variable mapping. Applied as labels in lower case |
+| `tags` | filled by OneCloudify | Hide it in the variable mapping. Applied as labels in lower case |
 
 ## Day-2 operations it lights up
 

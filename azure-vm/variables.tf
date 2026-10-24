@@ -9,7 +9,7 @@ variable "name" {
 }
 
 variable "location" {
-  description = "Azure region code, for example uksouth or westeurope. OneCloud fills this from the selected account region when the variable mapping says so."
+  description = "Azure region code, for example uksouth or westeurope. OneCloudify fills this from the selected account region when the variable mapping says so."
   type        = string
   default     = "uksouth"
 }
@@ -129,7 +129,7 @@ variable "ssh_public_key" {
 }
 
 variable "tags" {
-  description = "Tags applied to every resource. OneCloud passes the deployment tags here, including the onecloud_deployment correlation tag."
+  description = "Tags applied to every resource. OneCloudify passes the deployment tags here, including the onecloud_deployment correlation tag."
   type        = map(string)
   default     = {}
 }

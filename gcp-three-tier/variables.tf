@@ -1,5 +1,5 @@
 variable "project" {
-  description = "Google Cloud project id. Leave empty to use the project of the OneCloud cloud account (GOOGLE_PROJECT)."
+  description = "Google Cloud project id. Leave empty to use the project of the OneCloudify cloud account (GOOGLE_PROJECT)."
   type        = string
   default     = ""
 
@@ -10,7 +10,7 @@ variable "project" {
 }
 
 variable "region" {
-  description = "Google Cloud region, for example europe-west2. OneCloud fills it from the region picked on the order."
+  description = "Google Cloud region, for example europe-west2. OneCloudify fills it from the region picked on the order."
   type        = string
   default     = "europe-west2"
 
@@ -185,7 +185,7 @@ variable "cost_centre" {
 }
 
 variable "tags" {
-  description = "Tags applied to every resource as Google labels. OneCloud passes the deployment tags here, including the onecloud_deployment correlation tag. Keys and values are put in lower case and other characters become underscores, as Google labels require."
+  description = "Tags applied to every resource as Google labels. OneCloudify passes the deployment tags here, including the onecloud_deployment correlation tag. Keys and values are put in lower case and other characters become underscores, as Google labels require."
   type        = map(string)
   default     = {}
 }

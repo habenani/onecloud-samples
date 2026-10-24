@@ -1,6 +1,6 @@
 # Azure container instance
 
-Runs one container from a public image in Azure Container Instances, with a public IP address and a DNS name, in a resource group of its own. Pick the image, the CPU cores and the memory when you order; the default image is the Azure hello world web page. Remove deletes the container group and its resource group. Needs an Azure cloud account in OneCloud whose credential is an Azure Service Principal.
+Runs one container from a public image in Azure Container Instances, with a public IP address and a DNS name, in a resource group of its own. Pick the image, the CPU cores and the memory when you order; the default image is the Azure hello world web page. Remove deletes the container group and its resource group. Needs an Azure cloud account in OneCloudify whose credential is an Azure Service Principal.
 
 ## What the requester fills in
 
@@ -15,7 +15,7 @@ Runs one container from a public image in Azure Container Instances, with a publ
 | `port` | number | Default 80 |
 | `cost_centre` | text | Default `CC-1001` |
 | `test_tag` | text | Optional. Puts an `OneCloudTest` tag on every resource for test clean up |
-| `tags` | filled by OneCloud | Hide it in the variable mapping |
+| `tags` | filled by OneCloudify | Hide it in the variable mapping |
 
 ## Day-2 operations it lights up
 
@@ -26,4 +26,4 @@ Runs one container from a public image in Azure Container Instances, with a publ
 
 Checked against the azurerm provider 4.x documentation and the Azure Container Instances documentation on 17 October 2026.
 
-Tested through OneCloud on Azure (UK South) on 17 and 18 October 2026: order, Restart containers, Update of the CPU (1 to 2), Stop containers, Start containers and Remove all worked. Stop takes seconds, Start and Restart about a minute.
+Tested through OneCloudify on Azure (UK South) on 17 and 18 October 2026: order, Restart containers, Update of the CPU (1 to 2), Stop containers, Start containers and Remove all worked. Stop takes seconds, Start and Restart about a minute.

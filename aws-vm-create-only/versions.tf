@@ -9,7 +9,7 @@ terraform {
   }
 }
 
-# The access key comes from the environment OneCloud exports on the runner (AWS_ACCESS_KEY_ID and
+# The access key comes from the environment OneCloudify exports on the runner (AWS_ACCESS_KEY_ID and
 # AWS_SECRET_ACCESS_KEY from the cloud account credential). Nothing is hardcoded here on purpose.
 provider "aws" {
   region = var.region

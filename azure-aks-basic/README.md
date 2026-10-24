@@ -1,6 +1,6 @@
 # Azure AKS basic
 
-Creates a small Azure Kubernetes Service cluster in a resource group of its own: one system node pool of 1 to 3 nodes, the free tier control plane and a system assigned identity. Pick the Kubernetes version and the number of nodes when you order. Remove deletes the cluster, its resource group and the node resource group Azure made for it. Needs an Azure cloud account in OneCloud whose credential is an Azure Service Principal with Contributor on the subscription.
+Creates a small Azure Kubernetes Service cluster in a resource group of its own: one system node pool of 1 to 3 nodes, the free tier control plane and a system assigned identity. Pick the Kubernetes version and the number of nodes when you order. Remove deletes the cluster, its resource group and the node resource group Azure made for it. Needs an Azure cloud account in OneCloudify whose credential is an Azure Service Principal with Contributor on the subscription.
 
 ## What the requester fills in
 
@@ -14,7 +14,7 @@ Creates a small Azure Kubernetes Service cluster in a resource group of its own:
 | `node_vm_size` | select box | Standard_D2as_v4 (default) or Standard_D2s_v3, 2 vCPUs each |
 | `cost_centre` | text | Default `CC-1001`, put on every resource as the `cost_centre` tag |
 | `test_tag` | text | Optional. Puts an `OneCloudTest` tag on every resource for test clean up |
-| `tags` | filled by OneCloud | Hide it in the variable mapping |
+| `tags` | filled by OneCloudify | Hide it in the variable mapping |
 
 ## Day-2 operations it lights up
 
@@ -31,4 +31,4 @@ Every node is a 2 vCPU virtual machine. An upgrade adds one more node while it r
 
 Checked against `az aks get-versions --location uksouth` and the azurerm provider 4.x documentation on 17 October 2026.
 
-Tested through OneCloud on Azure (UK South) on 17 and 18 October 2026: order, Scale node pool 1 to 2 and back, Upgrade 1.35 to 1.36, Stop cluster (about 2 minutes), Start cluster (about 5 minutes, sent 55 minutes after the stop because Azure asks for 15 to 30 minutes in between) and Remove all worked.
+Tested through OneCloudify on Azure (UK South) on 17 and 18 October 2026: order, Scale node pool 1 to 2 and back, Upgrade 1.35 to 1.36, Stop cluster (about 2 minutes), Start cluster (about 5 minutes, sent 55 minutes after the stop because Azure asks for 15 to 30 minutes in between) and Remove all worked.

@@ -11,10 +11,10 @@ This is a create only demo template. It was written for a test access key that m
 | `name` | text, mandatory | Name tag of the instance |
 | `test_tag` | text | Value of the `OneCloudTest` tag, so the leftovers can be found later |
 | `instance_type` | select box | `t3.micro` or `t3.small` |
-| `region` | filled by OneCloud | From the region picked on the order, default `us-east-1` |
-| `tags` | filled by OneCloud | Deployment tags, including `onecloud_deployment` |
+| `region` | filled by OneCloudify | From the region picked on the order, default `us-east-1` |
+| `tags` | filled by OneCloudify | Deployment tags, including `onecloud_deployment` |
 
-Tags on the instance and its root volume: `Name`, `OneCloudTest`, `Owner = OneCloud test` and the tags OneCloud passes.
+Tags on the instance and its root volume: `Name`, `OneCloudTest`, `Owner = OneCloudify test` and the tags OneCloudify passes.
 
 ## Outputs
 

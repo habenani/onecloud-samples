@@ -1,12 +1,12 @@
-# Azure discovery sampler for OneCloud.
-# One small deployment that holds one of each Azure resource type OneCloud records in the CMDB, so an admin can check
+# Azure discovery sampler for OneCloudify.
+# One small deployment that holds one of each Azure resource type OneCloudify records in the CMDB, so an admin can check
 # in one run how each type lands: written from the Terraform state, confirmed by targeted pattern discovery where the
 # resource type map names a pattern, or recorded in the generic Cloud Resource class when the type has no mapping.
 # Order it, read the CMDB and Discovery steps of the run, then Remove it. The database and the load balancer cost
 # the most per hour, so do not keep the deployment longer than the check needs.
 
 locals {
-  # Template tags first, OneCloud tags last so the deployment correlation tag always wins.
+  # Template tags first, OneCloudify tags last so the deployment correlation tag always wins.
   tags = merge(
     {
       Name     = var.name
@@ -150,7 +150,7 @@ resource "azurerm_virtual_machine_data_disk_attachment" "data" {
   caching            = "None"
 }
 
-# A type with no resource type mapping: OneCloud records it in the generic Cloud Resource class.
+# A type with no resource type mapping: OneCloudify records it in the generic Cloud Resource class.
 resource "azurerm_user_assigned_identity" "this" {
   name                = "${var.name}-identity"
   resource_group_name = azurerm_resource_group.this.name

@@ -1,5 +1,5 @@
 # Amazon Linux 2023 from Amazon's own images. Looked up with DescribeImages rather than the public SSM
-# parameter, because the OneCloud test key may not call ssm:GetParameter.
+# parameter, because the OneCloudify test key may not call ssm:GetParameter.
 data "aws_ami" "al2023" {
   most_recent = true
   owners      = ["amazon"]

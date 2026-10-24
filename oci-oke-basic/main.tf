@@ -1,8 +1,8 @@
-# Oracle Container Engine for Kubernetes (OKE) basic sample for OneCloud.
+# Oracle Container Engine for Kubernetes (OKE) basic sample for OneCloudify.
 # A basic cluster (no cluster fee) with a public Kubernetes API endpoint and one managed node pool of 1 to 3 worker
 # nodes on a flexible shape, in a VCN of its own: an endpoint subnet and a node subnet behind an internet gateway.
 #
-# Day-2 through OneCloud: Scale node pool sets node_count, Upgrade Kubernetes version sets kubernetes_version (control
+# Day-2 through OneCloudify: Scale node pool sets node_count, Upgrade Kubernetes version sets kubernetes_version (control
 # plane and node pool; OKE replaces nodes as they are cycled), Update changes the other order form settings.
 
 locals {
@@ -28,7 +28,7 @@ resource "terraform_data" "compartment_check" {
   lifecycle {
     precondition {
       condition     = var.compartment_ocid != ""
-      error_message = "compartment_ocid is empty. OneCloud sets TF_VAR_compartment_ocid from the cloud account; hide the variable in the variable mapping so the empty default is not sent."
+      error_message = "compartment_ocid is empty. OneCloudify sets TF_VAR_compartment_ocid from the cloud account; hide the variable in the variable mapping so the empty default is not sent."
     }
   }
 }

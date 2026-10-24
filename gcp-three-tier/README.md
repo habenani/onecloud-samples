@@ -1,6 +1,6 @@
 # Google Cloud three tier
 
-Creates a web server and an app server in Google Cloud in a VPC network of their own: the web server sits in the web subnet with an external IP address and accepts the ports you list (one firewall rule per port), the app server sits in the app subnet without an external address and takes traffic on its app port from the web server only. The app server carries persistent data disks, and a private Cloud Storage bucket holds app data. There is no Cloud NAT and no load balancer, so the network itself is not billed by the hour. Remove deletes everything, the bucket and its objects included. Needs a Google Cloud cloud account in OneCloud whose service account may create networks, firewall rules, instances, disks, addresses and buckets in the project (cloud-bootstrap/gcp-bootstrap.sh gives it those roles).
+Creates a web server and an app server in Google Cloud in a VPC network of their own: the web server sits in the web subnet with an external IP address and accepts the ports you list (one firewall rule per port), the app server sits in the app subnet without an external address and takes traffic on its app port from the web server only. The app server carries persistent data disks, and a private Cloud Storage bucket holds app data. There is no Cloud NAT and no load balancer, so the network itself is not billed by the hour. Remove deletes everything, the bucket and its objects included. Needs a Google Cloud cloud account in OneCloudify whose service account may create networks, firewall rules, instances, disks, addresses and buckets in the project (cloud-bootstrap/gcp-bootstrap.sh gives it those roles).
 
 ## What the requester fills in
 
@@ -20,7 +20,7 @@ Creates a web server and an app server in Google Cloud in a VPC network of their
 | `web_subnet_cidr`, `app_subnet_cidr` | text | Defaults in `10.90.0.0/16` |
 | `cost_centre` | text | Default `CC-1001`, put on every resource as the `cost_centre` label |
 | `test_tag` | text | Optional. Puts an `onecloudtest` label on every resource for test clean up |
-| `tags` | filled by OneCloud | Hide it in the variable mapping. Applied as labels in lower case, other characters become underscores |
+| `tags` | filled by OneCloudify | Hide it in the variable mapping. Applied as labels in lower case, other characters become underscores |
 
 ## Day-2 operations it lights up
 

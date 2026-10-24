@@ -1,9 +1,9 @@
-# Amazon ECS on Fargate sample for OneCloud.
+# Amazon ECS on Fargate sample for OneCloudify.
 # One ECS cluster, one task definition with a single container from a public image, a security group and a Fargate
 # service in the default VPC with public IP addresses. The key that runs it needs ECS rights and EC2 security group
 # rights (create, authorize, revoke, delete).
 #
-# Day-2 through OneCloud: Scale service sets desired_count; Update changes image, task_cpu or task_memory (a new task
+# Day-2 through OneCloudify: Scale service sets desired_count; Update changes image, task_cpu or task_memory (a new task
 # definition revision, the service rolls to it).
 
 locals {

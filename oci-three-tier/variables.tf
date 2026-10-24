@@ -1,5 +1,5 @@
 variable "region" {
-  description = "OCI region identifier, for example uk-london-1. OneCloud fills it from the region picked on the order."
+  description = "OCI region identifier, for example uk-london-1. OneCloudify fills it from the region picked on the order."
   type        = string
   default     = "uk-london-1"
 
@@ -10,7 +10,7 @@ variable "region" {
 }
 
 variable "compartment_ocid" {
-  description = "Compartment the resources are created in. OneCloud sets it from the cloud account (TF_VAR_compartment_ocid), so hide it in the variable mapping."
+  description = "Compartment the resources are created in. OneCloudify sets it from the cloud account (TF_VAR_compartment_ocid), so hide it in the variable mapping."
   type        = string
   default     = ""
 
@@ -185,7 +185,7 @@ variable "cost_centre" {
 }
 
 variable "tags" {
-  description = "Tags applied to every resource as free form tags. OneCloud passes the deployment tags here, including the onecloud_deployment correlation tag."
+  description = "Tags applied to every resource as free form tags. OneCloudify passes the deployment tags here, including the onecloud_deployment correlation tag."
   type        = map(string)
   default     = {}
 }

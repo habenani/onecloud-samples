@@ -19,7 +19,7 @@ variable "resource_group_name" {
 }
 
 variable "location" {
-  description = "Azure region code, for example uksouth. OneCloud fills it from the account region when the variable mapping says so."
+  description = "Azure region code, for example uksouth. OneCloudify fills it from the account region when the variable mapping says so."
   type        = string
   default     = "uksouth"
 }
@@ -91,7 +91,7 @@ variable "cost_centre" {
 }
 
 variable "tags" {
-  description = "Tags applied to every resource. OneCloud passes the deployment tags here, including the onecloud_deployment correlation tag."
+  description = "Tags applied to every resource. OneCloudify passes the deployment tags here, including the onecloud_deployment correlation tag."
   type        = map(string)
   default     = {}
 }

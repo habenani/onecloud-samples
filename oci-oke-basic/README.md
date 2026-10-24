@@ -1,6 +1,6 @@
 # Oracle Cloud OKE basic
 
-Creates a small Oracle Container Engine for Kubernetes (OKE) basic cluster in a VCN of its own: a public Kubernetes API endpoint in an endpoint subnet and one managed node pool of 1 to 3 worker nodes on a flexible shape in a node subnet, both behind an internet gateway. Pick the Kubernetes version, the number of nodes and the node shape when you order. Remove deletes the node pool, the cluster and the network. Needs an Oracle Cloud cloud account in OneCloud whose user may manage clusters, instances and networks in the account's compartment (cloud-bootstrap/oci-bootstrap.sh writes that policy).
+Creates a small Oracle Container Engine for Kubernetes (OKE) basic cluster in a VCN of its own: a public Kubernetes API endpoint in an endpoint subnet and one managed node pool of 1 to 3 worker nodes on a flexible shape in a node subnet, both behind an internet gateway. Pick the Kubernetes version, the number of nodes and the node shape when you order. Remove deletes the node pool, the cluster and the network. Needs an Oracle Cloud cloud account in OneCloudify whose user may manage clusters, instances and networks in the account's compartment (cloud-bootstrap/oci-bootstrap.sh writes that policy).
 
 ## What the requester fills in
 
@@ -8,7 +8,7 @@ Creates a small Oracle Container Engine for Kubernetes (OKE) basic cluster in a 
 |---|---|---|
 | `name` | text, mandatory | Cluster name, 3 to 30 lowercase characters |
 | `region` | text | Map it to the account region (Variable mappings, value source Region) so it is not asked |
-| `compartment_ocid` | filled by OneCloud | Hide it in the variable mapping: OneCloud sets TF_VAR_compartment_ocid from the cloud account |
+| `compartment_ocid` | filled by OneCloudify | Hide it in the variable mapping: OneCloudify sets TF_VAR_compartment_ocid from the cloud account |
 | `kubernetes_version` | select box | 1.33 (default), 1.34 or 1.35. The template picks the newest patch OKE offers |
 | `node_count` | number | 1 (default) to 3 |
 | `node_shape` | select box | shape:OCPUs:memory GB, default `VM.Standard.E4.Flex:1:8` |
@@ -16,7 +16,7 @@ Creates a small Oracle Container Engine for Kubernetes (OKE) basic cluster in a 
 | `api_source_cidr` | text | Who may reach the Kubernetes API, default anywhere |
 | `cost_centre` | text | Default `CC-1001`, put on every resource as the `cost_centre` free form tag |
 | `test_tag` | text | Optional. Puts an `OneCloudTest` tag on every resource for test clean up |
-| `tags` | filled by OneCloud | Hide it in the variable mapping. Applied as free form tags |
+| `tags` | filled by OneCloudify | Hide it in the variable mapping. Applied as free form tags |
 
 ## Day-2 operations it lights up
 
@@ -38,7 +38,7 @@ A basic cluster has no cluster fee. The worker nodes are billed as compute insta
 
 ## Provider version
 
-Written for `oracle/oci` 6.x to 9.x (validated with 9.10 on Terraform 1.11). The version list is a starting point: check `oci ce cluster-options get --cluster-option-id all` in your region and change the validation list to the minor versions OKE offers. The credential is not a template variable: the provider reads TF_VAR_tenancy_ocid, TF_VAR_user_ocid, TF_VAR_fingerprint, TF_VAR_private_key and TF_VAR_region from the environment OneCloud sets.
+Written for `oracle/oci` 6.x to 9.x (validated with 9.10 on Terraform 1.11). The version list is a starting point: check `oci ce cluster-options get --cluster-option-id all` in your region and change the validation list to the minor versions OKE offers. The credential is not a template variable: the provider reads TF_VAR_tenancy_ocid, TF_VAR_user_ocid, TF_VAR_fingerprint, TF_VAR_private_key and TF_VAR_region from the environment OneCloudify sets.
 
 ## Try it locally
 

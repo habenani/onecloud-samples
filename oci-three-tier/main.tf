@@ -1,9 +1,9 @@
-# Oracle Cloud three tier sample for OneCloud.
+# Oracle Cloud three tier sample for OneCloudify.
 # A VCN of its own with a public (web) and a private (app) subnet, an internet gateway for the web subnet only (no NAT
 # gateway), a network security group per tier with one rule per web port, a web and an app server (Oracle Linux 9 on
 # flexible shapes), block volumes on the app server and a private Object Storage bucket for app data.
 #
-# Day-2 through OneCloud: variables named <tier>_<setting> belong to oci_core_instance.web or .app, so an operation
+# Day-2 through OneCloudify: variables named <tier>_<setting> belong to oci_core_instance.web or .app, so an operation
 # run on one server changes only that server. Resize sets web_shape or app_shape (shape:OCPUs:memory GB, the same form
 # the OCI CLI resize on the MID Server uses), Expand disk sets web_boot_volume_size_in_gbs or
 # app_boot_volume_size_in_gbs, Add a data disk grows app_data_disk_sizes_gb, Open a port and Close a port change
@@ -30,7 +30,7 @@ resource "terraform_data" "compartment_check" {
   lifecycle {
     precondition {
       condition     = var.compartment_ocid != ""
-      error_message = "compartment_ocid is empty. OneCloud sets TF_VAR_compartment_ocid from the cloud account (placement defaults compartment_id, else the service account Account Id); hide the variable in the variable mapping so the empty default is not sent."
+      error_message = "compartment_ocid is empty. OneCloudify sets TF_VAR_compartment_ocid from the cloud account (placement defaults compartment_id, else the service account Account Id); hide the variable in the variable mapping so the empty default is not sent."
     }
   }
 }

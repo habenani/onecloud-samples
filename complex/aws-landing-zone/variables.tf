@@ -130,7 +130,7 @@ variable "api_token" {
 }
 
 variable "tags" {
-  description = "Tags applied by OneCloud"
+  description = "Tags applied by OneCloudify"
   type        = map(string)
   default     = {}
 }
