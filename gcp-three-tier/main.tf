@@ -110,7 +110,7 @@ resource "google_compute_instance" "web" {
     initialize_params {
       image  = data.google_compute_image.debian.self_link
       size   = var.web_boot_disk_size
-      type   = "pd-balanced"
+      type   = var.disk_type
       labels = merge(local.labels, { tier = "web" })
     }
   }
@@ -142,7 +142,7 @@ resource "google_compute_instance" "app" {
     initialize_params {
       image  = data.google_compute_image.debian.self_link
       size   = var.app_boot_disk_size
-      type   = "pd-balanced"
+      type   = var.disk_type
       labels = merge(local.labels, { tier = "app" })
     }
   }
@@ -167,7 +167,7 @@ resource "google_compute_disk" "app_data" {
   name   = "${var.name}-app-data-${count.index}"
   zone   = local.zone
   size   = var.app_data_disk_sizes_gb[count.index]
-  type   = "pd-balanced"
+  type   = var.disk_type
   labels = merge(local.labels, { tier = "app" })
 }
 
