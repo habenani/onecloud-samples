@@ -112,5 +112,4 @@ resource "aws_s3_object" "settings" {
   key          = "${var.object_prefix}settings.json"
   content      = jsonencode(local.received)
   content_type = "application/json"
-  tags         = { onecloud = "settings" }
 }
