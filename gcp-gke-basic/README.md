@@ -24,7 +24,7 @@ Creates a small zonal Google Kubernetes Engine Standard cluster in the project's
 | Operation | How |
 |---|---|
 | Scale node pool | sets `node_count`, Terraform plan and apply |
-| Upgrade Kubernetes version | sets `kubernetes_version`: the control plane first, then the node pool (one surge node at a time), one minor version at a time |
+| Upgrade Kubernetes version | sets `kubernetes_version`: the control plane moves to the newest patch of that minor version in the channel; GKE then upgrades the node pool to match on its own (node auto-upgrade, one surge node at a time). One minor version at a time |
 | Update | changes the order form settings, for example `node_machine_type` (GKE replaces the nodes) |
 
 GKE has no stop for a cluster: scaling to fewer nodes is the way to cut cost, and Remove deletes it.

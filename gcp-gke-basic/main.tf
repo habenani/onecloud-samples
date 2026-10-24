@@ -6,8 +6,8 @@
 # channel offers. Within a channel Google upgrades the control plane and nodes on its own schedule as well.
 # deletion_protection is off so Remove can delete the cluster.
 #
-# Day-2 through OneCloud: Scale node pool sets node_count, Upgrade Kubernetes version sets kubernetes_version (control
-# plane first, then the node pool), Update changes the other order form settings.
+# Day-2 through OneCloud: Scale node pool sets node_count, Upgrade Kubernetes version sets kubernetes_version (the
+# control plane; GKE then upgrades the nodes to match), Update changes the other order form settings.
 
 locals {
   zone = "${var.region}-${var.zone_suffix}"
@@ -51,8 +51,8 @@ resource "google_container_node_pool" "this" {
   location   = local.zone
   cluster    = google_container_cluster.this.name
   node_count = var.node_count
-  # the nodes follow the control plane: Upgrade Kubernetes version upgrades the control plane first, then this pool
-  version = google_container_cluster.this.master_version
+  # no version here: in a release channel GKE keeps node auto-upgrade on and moves the nodes to the control plane
+  # version itself (a version here and auto_upgrade fight, and Terraform would report a change after every upgrade)
 
   management {
     auto_repair  = true
