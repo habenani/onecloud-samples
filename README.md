@@ -39,3 +39,11 @@ Templates that exercise every variable type, attribute and file layout OneCloudi
 | `complex/aws-landing-zone` | A VPC with three subnets (local module), a network ACL, a security group and a private S3 bucket with versioning, a lifecycle rule and one object listing every value Terraform received. 45 variables over four files, `terraform.tfvars`, `*.auto.tfvars`, `*.auto.tfvars.json`, a registry module, sensitive and ephemeral variables. Free while idle. | AWS |
 | `complex/azure-network-json` | A resource group, virtual network, subnets and a network security group, written only in Terraform JSON syntax, with `terraform.tfvars.json`. Free. | Azure |
 | `complex/aws-mixed-bucket` | A private S3 bucket with an expiry rule, mixing `.tf` and `.tf.json` files. Free while empty. | AWS |
+
+## Examples (`examples/`)
+
+Copies of public tutorial templates, changed so they order cleanly in every region. Point a template source at one folder (for example the path `examples/linux-web-server`) to scan it.
+
+| Folder | What it provisions | Credentials needed |
+|---|---|---|
+| `examples/linux-web-server` | An EC2 instance (Amazon Linux 2023, size picked from t3.micro, t3.small or t3.medium) in a new VPC with a public subnet, internet gateway and a security group for ports 22, 80 and 8080. Based on HashiCorp's learn-terraform-provisioning `instances` folder (MPL-2.0), which fixes the size to t2.micro that eu-north-1 and other newer regions don't offer. | AWS |
