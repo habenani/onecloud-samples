@@ -24,6 +24,7 @@ in Employee Center when the folder is scanned by a OneCloudify template source.
 | `gcp-web-lb-sql` | Google Cloud web servers (no external IP addresses) behind a regional external network load balancer, Cloud NAT for updates and a Cloud SQL database (PostgreSQL or MySQL, Enterprise edition, encrypted connections only). Shows the load balancer, NAT and database lines of the order estimate. The service account also needs `roles/cloudsql.admin`. | Google Cloud |
 | `gcp-vm-provider-labels` | One Debian 12 server (e2-micro) in a VPC network of its own, with no labels and no `tags` variable in the template: OneCloudify adds its labels through the google provider's `default_labels`. | Google Cloud |
 | `oci-web-lb-adb` | Oracle Cloud web servers in a private subnet behind a flexible load balancer, a NAT gateway for updates and an Autonomous Database (ECPU) with a private endpoint. Shows the load balancer and database lines of the order estimate. | Oracle Cloud |
+| `vsphere-vm` | One virtual machine in a vCenter datacenter, cloned from a VM template or empty for a lab, on one port group, with the OneCloudify tags in the VM notes. The end to end vSphere walkthrough in the OneCloudify repository (docs/guides/vsphere-end-to-end.md) uses it. | vSphere |
 
 Conventions OneCloudify reads:
 
